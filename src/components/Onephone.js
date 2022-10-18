@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Smallborder,
   Smallborder_img,
@@ -5,20 +6,21 @@ import {
   Smallborder_button,
 } from '../styled/styledOnephone';
 
-const Onephone = ({ phone, addToOrder }) => {
+const Onephone = ({ phone, addToOrder, addItem }) => {
   return (
     <div>
       <Smallborder>
         <Smallborder_img src={'./img/' + phone.img} />
         <Smallborder_div>{phone.name}</Smallborder_div>
-        <Smallborder_div>{phone.price * phone.count} UAH</Smallborder_div>
+        <Smallborder_div>{phone.price} UAH</Smallborder_div>
         <Smallborder_button
           onClick={() => {
             addToOrder(phone);
-            console.log(phone);
+            addItem(phone.id);
           }}
+          click={phone.click}
         >
-          Buy
+          {phone.click ? 'In the box' : 'Buy'}
         </Smallborder_button>
       </Smallborder>
     </div>

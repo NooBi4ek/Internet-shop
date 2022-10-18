@@ -16,25 +16,50 @@ const App = () => {
     });
     if (!isArr) {
       Setorders([...orders, phone]);
-      console.log(orders);
     }
   };
   //Добавление количества товара
   const addcount = (id) => {
-    const countplus = phone.map((el) =>
+    const countplus = orders.map((el) =>
       el.id === id ? { ...el, count: el.count + 1 } : el,
     );
-    Setphones(countplus);
+    Setorders(countplus);
   };
-
+  const deletecount = (id) => {
+    const countminus = orders.map((el) =>
+      el.id === id ? { ...el, count: el.count - 1 } : el,
+    );
+    Setorders(countminus);
+  };
+  const deleteOrder = (id) => {
+    const deleteor = orders.filter((el) => el.id !== id);
+    Setorders(deleteor);
+    const phonesremove = phone.map((el) =>
+      el.id === id ? { ...el, click: false } : el,
+    );
+    Setphones(phonesremove);
+  };
+  const addItem = (id) => {
+    const phonesadd = phone.map((el) =>
+      el.id === id ? { ...el, click: true } : el,
+    );
+    Setphones(phonesadd);
+  };
   return (
     <div>
-      <Allphone phone={phone} Setmodal={Setmodal} addToOrder={addToOrder} />
+      <Allphone
+        phone={phone}
+        Setmodal={Setmodal}
+        addToOrder={addToOrder}
+        addItem={addItem}
+      />
       <Modalbusket
         modal={modal}
         Setmodal={Setmodal}
         orders={orders}
         addcount={addcount}
+        deletecount={deletecount}
+        deleteOrder={deleteOrder}
       />
     </div>
   );

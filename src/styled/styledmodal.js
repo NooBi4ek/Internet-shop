@@ -15,7 +15,16 @@ export const Modal = styled.div`
   transition: 0.5s;
 `;
 export const Modalcontent = styled.div`
+  overflow-y: auto;
   padding: 20px;
   border-radius: 12px;
   background-color: white;
+  width: 40vw;
+  height: 80vh;
+`;
+export const Modal_div = styled.div`
+  margin: 50% auto;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
 `;
