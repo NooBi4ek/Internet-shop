@@ -17,6 +17,8 @@ export const Smallborder = styled.div`
 `;
 export const Smallborder_div = styled.div`
   margin-bottom: 30px;
+  text-decoration: none;
+  color: #000;
 `;
 export const Smallborder_img = styled.img`
   max-width: 200px;
@@ -31,4 +33,5 @@ export const Smallborder_button = styled.button`
   border: 1px solid ${(props) => (props.click ? 'red' : 'black')};
   margin: 15px 0 20px 0;
   font-size: 18px;
+  transition: 1s;
 `;

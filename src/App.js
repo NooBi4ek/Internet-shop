@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { phones, order } from './db';
 import Allphone from './components/Allphone';
 import Modalbusket from './components/Modalbusket';
+import { Route, Routes } from 'react-router-dom';
+import One_phone_info from './components/One_phone_info';
 
 const App = () => {
   const [phone, Setphones] = useState(phones);
@@ -47,12 +49,6 @@ const App = () => {
   };
   return (
     <div>
-      <Allphone
-        phone={phone}
-        Setmodal={Setmodal}
-        addToOrder={addToOrder}
-        addItem={addItem}
-      />
       <Modalbusket
         modal={modal}
         Setmodal={Setmodal}
@@ -61,6 +57,20 @@ const App = () => {
         deletecount={deletecount}
         deleteOrder={deleteOrder}
       />
+      <Routes>
+        <Route path="/:id" element={<One_phone_info phone={phone} />} />
+        <Route
+          path="/"
+          element={
+            <Allphone
+              phone={phone}
+              Setmodal={Setmodal}
+              addToOrder={addToOrder}
+              addItem={addItem}
+            />
+          }
+        />
+      </Routes>
     </div>
   );
 };

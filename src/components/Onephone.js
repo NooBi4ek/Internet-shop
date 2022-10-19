@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Smallborder,
   Smallborder_img,
@@ -10,9 +10,15 @@ const Onephone = ({ phone, addToOrder, addItem }) => {
   return (
     <div>
       <Smallborder>
-        <Smallborder_img src={'./img/' + phone.img} />
-        <Smallborder_div>{phone.name}</Smallborder_div>
-        <Smallborder_div>{phone.price} UAH</Smallborder_div>
+        <Link to={`/${phone.id}`}>
+          <Smallborder_img src={'./img/' + phone.img} />
+        </Link>
+        <Link to={`/${phone.id}`}>
+          <Smallborder_div>{phone.name}</Smallborder_div>
+        </Link>
+        <Link to={`/${phone.id}`}>
+          <Smallborder_div>{phone.price} UAH</Smallborder_div>
+        </Link>
         <Smallborder_button
           onClick={() => {
             addToOrder(phone);
