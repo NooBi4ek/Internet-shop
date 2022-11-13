@@ -1,11 +1,14 @@
+import { useDispatch } from 'react-redux';
+import { addcount, deletecount, deleteOrder } from '../../redux/shopSlice';
 import {
   Basket_button,
   Basket_div,
   Basket_img,
   Basket_wrapper,
-} from '../styled/styledBasket';
+} from '../../styled/Busket/styledBasket';
 
-const Basket = ({ orders, addcount, deletecount, deleteOrder }) => {
+const Basket = ({ orders, id }) => {
+  const dispatch = useDispatch();
   return (
     <Basket_wrapper>
       <Basket_img src={'./img/' + orders.img} />
@@ -13,12 +16,18 @@ const Basket = ({ orders, addcount, deletecount, deleteOrder }) => {
         <div>{orders.name}</div>
         <div>{orders.price * orders.count} UAH</div>
         <div>{orders.count}</div>
-        <Basket_button onClick={() => addcount(orders.id)}>
+        <Basket_button
+          onClick={() => {
+            dispatch(addcount({ id }));
+          }}
+        >
           Add count
         </Basket_button>
         <Basket_button
           onClick={() => {
-            orders.count > 1 ? deletecount(orders.id) : deleteOrder(orders.id);
+            orders.count > 1
+              ? dispatch(deletecount({ id }))
+              : dispatch(deleteOrder({ id }));
           }}
         >
           Delete count
